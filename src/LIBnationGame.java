@@ -50,12 +50,14 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 		public void keyTyped (KeyEvent typed)
 		{
+            System.out.println("keytyped " + typed.toString());
 		}
 /**Controls the characters (starts movement)
  *@param the key pressed
  */
 		public void keyPressed (KeyEvent pressed)
 		{
+            System.out.println("keyPressed " + pressed.toString());
 			if(pressed.getKeyCode() == KeyEvent.VK_A)
 				p1moveLeft = true;
 			if(pressed.getKeyCode() == KeyEvent.VK_W)
@@ -86,6 +88,7 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 		public void keyReleased (KeyEvent released)
 		{
+            System.out.println("keyreleased " + released.toString());
 			if(released.getKeyCode() == KeyEvent.VK_A)
 				p1moveLeft = false;
 			if(released.getKeyCode() == KeyEvent.VK_W)
@@ -117,6 +120,7 @@ public class LIBnationGame extends JApplet implements Runnable
 	public void init ()
 	{
 		setSize (APPLET_WIDTH, APPLET_HEIGHT);
+		setFocusable(true);
 		background = getImage (getCodeBase(), level+".jpg");
 		music = getAudioClip (getCodeBase(), level+".au");
 		backbuffer = createImage(APPLET_WIDTH, APPLET_HEIGHT);
@@ -155,6 +159,7 @@ public class LIBnationGame extends JApplet implements Runnable
 		music.loop();
 		addKeyListener(Controller);//adds controls for game
 		GameRun.start();//starts the game
+		requestFocusInWindow();//tries to make sure we get input
 	}
 /**Runs a game loop(thread) to for the game to occur in with a time limit
  */
@@ -170,7 +175,7 @@ public class LIBnationGame extends JApplet implements Runnable
  			}
  			removeKeyListener(Controller);//stop the player controls
  		}
- 		catch (InterruptedException e) { }
+ 		catch (InterruptedException e) {}
  	}
 /**Handles all the game logic and movements of the characters
  */
@@ -222,7 +227,7 @@ public class LIBnationGame extends JApplet implements Runnable
 		drawLevel();
       	drawHealth();
       	drawPlayers();
-      	if(p1.isDead() || p2.isDead())
+      	if((p1 != null && p1.isDead()) || (p2 != null && p2.isDead()))
       	{
       		backg.setColor(Color.RED);
       		backg.drawString (victory, 187, 250);
@@ -234,19 +239,19 @@ public class LIBnationGame extends JApplet implements Runnable
 	public void drawHealth ()
 	{
 		backg.setColor(Color.blue);
-		if(p1.isDead())
+		if(p1 != null && p1.isDead())
 			backg.setColor(Color.RED);
 		bounds = font.getStringBounds(name1, context); //to find where to put string
 		backg.drawString (name1, 0, (int) bounds.getHeight());
-		healthsign1 = p1.getHealth();
+		healthsign1 = p1 != null ? p1.getHealth() : String.valueOf(health);
 		bounds2 = font.getStringBounds(healthsign1, context);
 		backg.drawString (healthsign1, 0, (int) bounds.getHeight()+ (int) bounds2.getHeight());
 		backg.setColor(Color.blue);
-		if(p2.isDead())
+		if(p2 != null && p2.isDead())
 			backg.setColor(Color.RED);
 		bounds = font.getStringBounds(name2, context); //to find where to put strings
 		backg.drawString (name2, APPLET_WIDTH- (int) bounds.getWidth(), (int) bounds.getHeight());
-		healthsign2 = p2.getHealth();
+		healthsign2 = p2 != null ? p2.getHealth() : String.valueOf(health);
 		bounds2 = font.getStringBounds(healthsign2, context);
 		backg.drawString (healthsign2, APPLET_WIDTH- (int) bounds2.getWidth(), (int) bounds.getHeight()+ (int) bounds2.getHeight());
 	}
@@ -254,15 +259,17 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 	public void drawPlayers ()
 	{
-		backg.drawImage (p1.getSprite(), p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight(), this);
-		backg.drawImage (p2.getSprite(), p2.getX(), p2.getY(), p2.getWidth(), p2.getHeight(), this);
+		if(p1 != null)
+			backg.drawImage (p1.getSprite(), p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight(), this);
+		if(p2 != null)
+			backg.drawImage (p2.getSprite(), p2.getX(), p2.getY(), p2.getWidth(), p2.getHeight(), this);
 	}
 /**Draws the level and plays out the effects it has on the players
  */
  	public void drawLevel()
  	{
 		backg.drawImage(background, 0, 0, APPLET_WIDTH, APPLET_HEIGHT, this);
- 		//more effects filled in later
+ 		//more effects could have been filled in
  	}
 /**Stops the game
  */
