@@ -7,11 +7,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import sun.awt.AppContext;  
+import sun.awt.SunToolkit;
 
 /**
  *@(#)LIBnationGame.java
  *
- *The Fighting Game
+ *The Original Fighting Game
  *
  *@author David Finol
  *@version 1.0 12/17/06
@@ -129,6 +131,8 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 	public void start ()
 	{
+		if(AppContext.getAppContext() == null)
+			SunToolkit.createNewAppContext();
 		GameRunning = true;
 		p1 = new Player(getImage (getCodeBase(), name1+"l1.png"), getImage (getCodeBase(), name1+"l2.png"),
 			getImage (getCodeBase(), name1+"r1.png"), getImage (getCodeBase(), name1+"r2.png"),
@@ -136,7 +140,7 @@ public class LIBnationGame extends JApplet implements Runnable
 			getImage (getCodeBase(), name1+"fl.png"), getImage (getCodeBase(), name1+"fr.png"),
 			getImage (getCodeBase(), name1+"al1.png"),getImage (getCodeBase(), name1+"al2.png"),
 			getImage (getCodeBase(), name1+"ar1.png"),getImage (getCodeBase(), name1+"ar2.png"),
-			getImage (getCodeBase(), name1+"dl.png"),getImage (getCodeBase(), name1+"dr.png"),
+			getImage (getCodeBase(), name1+"dl.png"), getImage (getCodeBase(), name1+"dr.png"),
 			getImage (getCodeBase(), name1+"die.png"),
 			name1, p1width, p1height, 1, health, p1atk, p1def, p1speed, p1range, teles);
 		p2 = new Player(getImage (getCodeBase(), name2+"l1.png"), getImage (getCodeBase(), name2+"l2.png"),
@@ -145,7 +149,7 @@ public class LIBnationGame extends JApplet implements Runnable
 			getImage (getCodeBase(), name2+"fl.png"), getImage (getCodeBase(), name2+"fr.png"),
 			getImage (getCodeBase(), name2+"al1.png"),getImage (getCodeBase(), name2+"al2.png"),
 			getImage (getCodeBase(), name2+"ar1.png"),getImage (getCodeBase(), name2+"ar2.png"),
-			getImage (getCodeBase(), name2+"dl.png"),getImage (getCodeBase(), name2+"dr.png"),
+			getImage (getCodeBase(), name2+"dl.png"), getImage (getCodeBase(), name2+"dr.png"),
 			getImage (getCodeBase(), name2+"die.png"),
 			name2, p2width, p2height, 2, health, p2atk, p2def, p2speed, p2range, teles);
 		music.loop();
