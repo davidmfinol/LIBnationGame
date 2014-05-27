@@ -8,7 +8,7 @@ Mossflower (represented by the mouse) is my online username, and Nick (represent
 Build
 -------------
 Windows: 
-Running the build.bat should work if a)you have your java classpath set and b) You have an alias in your default java keystore with the name DavidFinolWaterford.
+Running the build.bat should work if a) you have your java classpath set and b) you have an alias in your default java keystore with the name DavidFinolWaterford.
 
 Otherwise: 
 In the src/ folder, run "javac *.java" to compile the java files.
