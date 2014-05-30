@@ -20,4 +20,4 @@ Finally, use jarsigner to sign LIBnationGame.jar.
 Run
 -------------
 Open LIBnationGame.html with any web browser. Choose to Run and Allow (Do Not Block) in any security dialogues that may come up.
-NOTE: Running it locally instead of through a webserver will require lowering java security settings to medium.
+NOTE: Java security settings need to be lowered to medium. Instructions can be found here: http://www.java.com/en/download/help/jcp_security.xml
