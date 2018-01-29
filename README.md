@@ -29,5 +29,5 @@ grant {
 };
 Answer found here: https://stackoverflow.com/questions/10454037/java-security-accesscontrolexception-access-denied-java-io-filepermission
 Once security settings are configured, open LIBnationGame.html with an older brower. 
-Newer version of Chrom and FireFox do not allow java applets. 
+Newer version of Chrome and FireFox do not allow java applets. 
 Choose to Run and Allow (Do Not Block) in any security dialogues that may come up.
