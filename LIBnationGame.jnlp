@@ -1,0 +1,7 @@
+<applet-desc
+      documentBase="classes"
+      name="LIBnationGame"
+      main-class="libnation.LIBnationGame"
+      width="500"
+      height="375">
+  </applet-desc>
