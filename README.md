@@ -19,4 +19,4 @@ Finally, use jarsigner to sign LIBnationGame.jar.
 
 Run
 -------------
-Java applets have been deprecated by modern web browsers, so this java app has been configured to launch through JNLP.
+Java applets have been deprecated by modern web browsers, so this java applet has been configured to launch through JNLP.
