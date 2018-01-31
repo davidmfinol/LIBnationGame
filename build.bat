@@ -6,4 +6,3 @@ jar cfm LIBnationGame.jar manifest.txt libnation
 rmdir libnation /s /q
 del ..\classes\LIBnationGame.jar
 move LIBnationGame.jar ..\classes
-cd ..\classes
