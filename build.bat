@@ -7,4 +7,3 @@ rmdir libnation /s /q
 del ..\classes\LIBnationGame.jar
 move LIBnationGame.jar ..\classes
 cd ..\classes
-rem jarsigner LIBnationGame.jar DavidFinol
