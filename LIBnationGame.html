@@ -3,13 +3,10 @@
         <title>LIBnation Game</title>
     </head>
     <body>
-        <embed id="libnationgameapplet"
-            type="application/x-java-applet"
-            width="500" height="375"
-            codebase="classes"
-            archive="LIBnationGame.jar"
-            code="libnation.LIBnationGame"
-        />
+        <script src="https://www.java.com/js/deployJava.js"></script>
+        <script>
+            deployJava.createWebStartLaunchButton('LIBnationGame.jnlp', '1.7.0');
+        </script>
         
         <br/>
             
