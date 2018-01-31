@@ -1,2 +1,2 @@
-Permissions: all-permissions
+Permissions: sandbox
 Application-Name: LIBnation Game
