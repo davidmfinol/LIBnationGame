@@ -14,7 +14,6 @@ Otherwise:
 In the src/ folder, run "javac \*.java" to compile the java files.
 Then, move all the \*.class files into a folder called "libnation" and run "jar LIBnationGame.jar manifest.txt libnation" to create the jar archive. 
 Next, delete the "libnation" folder from the src/ folder and move "LIBnationGame.jar" to the classes/ folder.
-Finally, use jarsigner to sign LIBnationGame.jar.
 
 
 Run
