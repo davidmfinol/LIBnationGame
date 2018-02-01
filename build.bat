@@ -1,8 +1,6 @@
-cd src
+cd src/libnation
 javac *.java
-mkdir libnation
-move *.class libnation
-jar cfm LIBnationGame.jar manifest.txt libnation
-rmdir libnation /s /q
-del ..\classes\LIBnationGame.jar
-move LIBnationGame.jar ..\classes
+move *.class ../../classes/libnation
+cd ../../classes
+jar cfm LIBnationGame.jar manifest.txt libnation -C audio . -C images . 
+move LIBnationGame.jar ..

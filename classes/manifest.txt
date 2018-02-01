@@ -1,0 +1,2 @@
+Application-Name: LIBnationGame
+Permissions: sandbox

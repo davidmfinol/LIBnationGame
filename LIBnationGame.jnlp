@@ -1,7 +1,17 @@
-<applet-desc
-      documentBase="classes"
-      name="LIBnationGame"
-      main-class="libnation.LIBnationGame"
-      width="500"
-      height="375">
-  </applet-desc>
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp codebase="" href="LIBnationGame.jnlp">
+    <information>
+        <title>LIBnation Game</title>
+        <vendor>David Finol</vendor>
+    </information>
+    <resources>
+        <j2se version="1.7+" />
+        <jar href="LIBnationGame.jar" main="true" />
+    </resources>
+    <applet-desc name="LIBnationGame"
+	  main-class="libnation.LIBnationGame"
+	  width="500"
+	  height="375">
+	</applet-desc>
+   <update check="background"/>
+</jnlp>
