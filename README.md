@@ -15,7 +15,6 @@ In the src/ folder, run "javac \*.java" to compile the java files.
 Then, move all the \*.class files into a folder called "libnation" and run "jar LIBnationGame.jar manifest.txt libnation" to create the jar archive. 
 Next, delete the "libnation" folder from the src/ folder and move "LIBnationGame.jar" to the classes/ folder.
 
-
 Run
 -------------
 Java applets have been deprecated by modern web browsers, so this java applet has been configured to launch through JNLP.
