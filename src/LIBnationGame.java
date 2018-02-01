@@ -124,8 +124,8 @@ public class LIBnationGame extends JApplet implements Runnable
 		background = getImage (getCodeBase(), level+".jpg");
 		music = getAudioClip (getCodeBase(), level+".au");
 		backbuffer = createImage(APPLET_WIDTH, APPLET_HEIGHT);
-      	backg = backbuffer.getGraphics();
-      	Stringmaker = (Graphics2D) backg; //helps with context
+		backg = backbuffer.getGraphics();
+		Stringmaker = (Graphics2D) backg; //helps with context
 		context = Stringmaker.getFontRenderContext(); //helps with drawP1&P2
 		backg.setFont (font);
 		Controller = new Controls();
@@ -225,14 +225,14 @@ public class LIBnationGame extends JApplet implements Runnable
 	public void paint (Graphics screen)
 	{
 		drawLevel();
-      	drawHealth();
-      	drawPlayers();
-      	if((p1 != null && p1.isDead()) || (p2 != null && p2.isDead()))
-      	{
-      		backg.setColor(Color.RED);
-      		backg.drawString (victory, 187, 250);
-      	}
-      	screen.drawImage(backbuffer, 0, 0, this );
+		drawHealth();
+		drawPlayers();
+		if((p1 != null && p1.isDead()) || (p2 != null && p2.isDead()))
+		{
+			backg.setColor(Color.RED);
+			backg.drawString (victory, 187, 250);
+		}
+		screen.drawImage(backbuffer, 0, 0, this );
 	}
 /**Draws the health
  */
