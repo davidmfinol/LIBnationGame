@@ -11,10 +11,9 @@ Windows:
 Running the build.bat should work if you have your java classpath correctly set.
 
 Otherwise: 
-In the src/ folder, run "javac \*.java" to compile the java files.
-Then, move all the \*.class files into a folder called "libnation" and run "jar LIBnationGame.jar manifest.txt libnation" to create the jar archive. 
-Next, delete the "libnation" folder from the src/ folder and move "LIBnationGame.jar" to the classes/ folder.
+Compile java classes, create jar file, and sign the jar.
 
 Run
 -------------
 Java applets have been deprecated by modern web browsers, so this java applet has been configured to launch through JNLP.
+You can open LIBnationGame.html in your web browser so that you can see the controls. You can also just launch LIBnationGame.jnlp.
