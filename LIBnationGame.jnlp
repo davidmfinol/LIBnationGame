@@ -3,9 +3,11 @@
     <information>
         <title>LIBnation Game</title>
         <vendor>David Finol</vendor>
+		<homepage>https://davidmfinol.github.io/</homepage>
+		<offline-allowed/>
     </information>
     <resources>
-        <j2se version="1.7+" />
+        <j2se version="1.7+" href="http://java.sun.com/products/autodl/j2se"/>
         <jar href="LIBnationGame.jar" main="true" />
     </resources>
     <applet-desc name="LIBnationGame"
