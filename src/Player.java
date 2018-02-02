@@ -1,5 +1,3 @@
-package libnation;
-
 import java.awt.*;
 import java.util.Random;
 /**Player.java

@@ -1,14 +1,13 @@
-package libnation;
-
 import javax.swing.JApplet;
+import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
+import java.io.*;
 import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
-import sun.awt.AppContext;  
-import sun.awt.SunToolkit;
 
 /**
  *@(#)LIBnationGame.java
@@ -20,12 +19,11 @@ import sun.awt.SunToolkit;
 */
 public class LIBnationGame extends JApplet implements Runnable
 {
-	private ClassLoader cl;
 	private Thread GameRun;//keeps the the game running
 	private final int APPLET_WIDTH = 500;
 	private final int APPLET_HEIGHT = 375;
 	private Image background, backbuffer;//sets the background image
-	private AudioClip music;//background, later coming attack and hurt sounds
+	private AudioInputStream music;//background, later coming attack and hurt sounds
 	private Player p1, p2;
 	private String name1 = "Mossflower", name2 = "Nick";//character select
 	private String level = "Arrival_of_Dawn", victory;//causes level select
@@ -118,13 +116,16 @@ public class LIBnationGame extends JApplet implements Runnable
 	}
 /**Initializes the game by loading all necessary files
  */
-	public void init ()
+	public void init () 
 	{
-		cl = this.getClass().getClassLoader();
 		setSize (APPLET_WIDTH, APPLET_HEIGHT);
 		setFocusable(true);
-		background = Toolkit.getDefaultToolkit().createImage(cl.getResource(level+".jpg"));
-		music = getAudioClip(getDocumentBase(), level+".au");
+		try {
+			background = ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+level+".jpg"));
+			music = AudioSystem.getAudioInputStream(new BufferedInputStream(LIBnationGame.class.getResourceAsStream("/audio/"+level+".au")));
+		} catch(Exception e) {
+			System.out.println(e.toString());
+		}
 		backbuffer = createImage(APPLET_WIDTH, APPLET_HEIGHT);
 		backg = backbuffer.getGraphics();
 		Stringmaker = (Graphics2D) backg; //helps with context
@@ -137,28 +138,32 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 	public void start ()
 	{
-		if(AppContext.getAppContext() == null)
-			SunToolkit.createNewAppContext();
 		GameRunning = true;
-		p1 = new Player(Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"l1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"l2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"r1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"r2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"jl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"jr.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"fl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"fr.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"al1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"al2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"ar1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"ar2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"dl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"dr.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"die.png")),
+		try {
+		p1 = new Player(ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"l1.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"l2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"r1.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"r2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"jl.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"jr.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"fl.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"fr.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"al1.png")),ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"al2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"ar1.png")),ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"ar2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"dl.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"dr.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name1+"die.png")),
 			name1, p1width, p1height, 1, health, p1atk, p1def, p1speed, p1range, teles);
-		p2 = new Player(Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"l1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"l2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"r1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"r2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"jl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"jr.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"fl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"fr.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"al1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"al2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"ar1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"ar2.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"dl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"dr.png")),
-			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"die.png")),
+		p2 = new Player(ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"l1.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"l2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"r1.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"r2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"jl.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"jr.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"fl.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"fr.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"al1.png")),ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"al2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"ar1.png")),ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"ar2.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"dl.png")), ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"dr.png")),
+			ImageIO.read(LIBnationGame.class.getResourceAsStream("/images/"+name2+"die.png")),
 			name2, p2width, p2height, 2, health, p2atk, p2def, p2speed, p2range, teles);
-		music.loop();
+        Clip clip = AudioSystem.getClip();
+		clip.open(music);
+		clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch(Exception e) {
+			System.out.println(e.toString());
+		}
 		addKeyListener(Controller);//adds controls for game
 		GameRun.start();//starts the game
 		requestFocusInWindow();//tries to make sure we get input
@@ -277,7 +282,6 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 	public void stop ()
 	{
-		music.stop();
 		GameRunning = false;
 	}
 }

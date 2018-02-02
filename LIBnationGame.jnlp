@@ -11,7 +11,7 @@
         <jar href="LIBnationGame.jar" main="true" />
     </resources>
     <applet-desc name="LIBnationGame"
-	  main-class="libnation.LIBnationGame"
+	  main-class="LIBnationGame"
 	  width="500"
 	  height="375">
 	</applet-desc>
