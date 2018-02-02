@@ -7,8 +7,8 @@ Mossflower (represented by the mouse) is my online username, and Nick (represent
 Run
 -------------
 Java applets have been deprecated by modern web browsers, so this java applet has been configured to launch through JNLP.
-You can open LIBnationGame.html in your web browser so that you can see the controls. 
-You could also launch LIBnationGame.jnlp by double-clicking on it.
+Double-click on LIBnationGame.jnlp to launch it. You may need Java 7 installed as your primary JRE. Ignore security warnings.
+You can open LIBnationGame.html in your web browser to see the controls. 
 
 
 Build

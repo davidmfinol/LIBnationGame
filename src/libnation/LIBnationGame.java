@@ -20,6 +20,7 @@ import sun.awt.SunToolkit;
 */
 public class LIBnationGame extends JApplet implements Runnable
 {
+	private ClassLoader cl;
 	private Thread GameRun;//keeps the the game running
 	private final int APPLET_WIDTH = 500;
 	private final int APPLET_HEIGHT = 375;
@@ -119,10 +120,11 @@ public class LIBnationGame extends JApplet implements Runnable
  */
 	public void init ()
 	{
+		cl = this.getClass().getClassLoader();
 		setSize (APPLET_WIDTH, APPLET_HEIGHT);
 		setFocusable(true);
-		background = getImage (getCodeBase(), level+".jpg");
-		music = getAudioClip (getCodeBase(), level+".au");
+		background = Toolkit.getDefaultToolkit().createImage(cl.getResource(level+".jpg"));
+		music = getAudioClip(getDocumentBase(), level+".au");
 		backbuffer = createImage(APPLET_WIDTH, APPLET_HEIGHT);
 		backg = backbuffer.getGraphics();
 		Stringmaker = (Graphics2D) backg; //helps with context
@@ -138,23 +140,23 @@ public class LIBnationGame extends JApplet implements Runnable
 		if(AppContext.getAppContext() == null)
 			SunToolkit.createNewAppContext();
 		GameRunning = true;
-		p1 = new Player(getImage (getCodeBase(), name1+"l1.png"), getImage (getCodeBase(), name1+"l2.png"),
-			getImage (getCodeBase(), name1+"r1.png"), getImage (getCodeBase(), name1+"r2.png"),
-			getImage (getCodeBase(), name1+"jl.png"), getImage (getCodeBase(), name1+"jr.png"),
-			getImage (getCodeBase(), name1+"fl.png"), getImage (getCodeBase(), name1+"fr.png"),
-			getImage (getCodeBase(), name1+"al1.png"),getImage (getCodeBase(), name1+"al2.png"),
-			getImage (getCodeBase(), name1+"ar1.png"),getImage (getCodeBase(), name1+"ar2.png"),
-			getImage (getCodeBase(), name1+"dl.png"), getImage (getCodeBase(), name1+"dr.png"),
-			getImage (getCodeBase(), name1+"die.png"),
+		p1 = new Player(Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"l1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"l2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"r1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"r2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"jl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"jr.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"fl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"fr.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"al1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"al2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"ar1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"ar2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"dl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"dr.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name1+"die.png")),
 			name1, p1width, p1height, 1, health, p1atk, p1def, p1speed, p1range, teles);
-		p2 = new Player(getImage (getCodeBase(), name2+"l1.png"), getImage (getCodeBase(), name2+"l2.png"),
-			getImage (getCodeBase(), name2+"r1.png"), getImage (getCodeBase(), name2+"r2.png"),
-			getImage (getCodeBase(), name2+"jl.png"), getImage (getCodeBase(), name2+"jr.png"),
-			getImage (getCodeBase(), name2+"fl.png"), getImage (getCodeBase(), name2+"fr.png"),
-			getImage (getCodeBase(), name2+"al1.png"),getImage (getCodeBase(), name2+"al2.png"),
-			getImage (getCodeBase(), name2+"ar1.png"),getImage (getCodeBase(), name2+"ar2.png"),
-			getImage (getCodeBase(), name2+"dl.png"), getImage (getCodeBase(), name2+"dr.png"),
-			getImage (getCodeBase(), name2+"die.png"),
+		p2 = new Player(Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"l1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"l2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"r1.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"r2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"jl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"jr.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"fl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"fr.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"al1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"al2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"ar1.png")),Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"ar2.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"dl.png")), Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"dr.png")),
+			Toolkit.getDefaultToolkit().createImage(cl.getResource(name2+"die.png")),
 			name2, p2width, p2height, 2, health, p2atk, p2def, p2speed, p2range, teles);
 		music.loop();
 		addKeyListener(Controller);//adds controls for game
