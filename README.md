@@ -11,7 +11,6 @@ To run, add "file:///" to your java security exceptions, as described here: http
 Double-click on LIBnationGame.jnlp to launch it. Ignore security warnings.
 You can open LIBnationGame.html in your web browser to see the controls. 
 
-
 Build
 -------------
 The compiled version is already included, so building is not necessary. 
