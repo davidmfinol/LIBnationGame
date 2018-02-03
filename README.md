@@ -14,7 +14,13 @@ You can open LIBnationGame.html in your web browser to see the controls.
 Build
 -------------
 The compiled version is already included, so building is not necessary. 
-If you would like to rebuild anyway: Compile java classes, create jar file, and sign the jar.
-
-Windows: 
-Running the build.bat should work assuming you have your java classpath correctly set and you have a "DavidFinolWaterford" alias in your default java keystore.
+If you would like to rebuild anyway:
+Compile java classes, create jar file, and sign the jar - 
+    cd src
+    javac *.java
+    move *.class ../classes
+    cd ../classes
+    jar cfm LIBnationGame.jar manifest.txt audio images LIBnationGame$Controls.class LIBnationGame.class Player.class
+    move LIBnationGame.jar ..
+    cd ..
+    jarsigner LIBnationGame.jar DavidFinolWaterford
